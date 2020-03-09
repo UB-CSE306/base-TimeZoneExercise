@@ -2,7 +2,7 @@
 
 To try out the code, compile with:
 
-    gcc -g -std=c11 -Wall -o reader reader.c
+    gcc -g -std=c11 -Wall -o reader reader.c time.c
 
 then run:
 
