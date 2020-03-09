@@ -4,7 +4,7 @@
 #include "types.h"
 #include "reader.h"
 
-int time_difference(char * A, char * B, int dateAtA, int timeAtAB) {
+int time_difference(char * A, char * B, int dateAtA, int timeAtA) {
   return 0;
 }
 
