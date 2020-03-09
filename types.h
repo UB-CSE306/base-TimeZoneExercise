@@ -1,3 +1,6 @@
+#ifndef TYPES_H
+#define TYPES_H
+
 struct timeZoneData {
   char loc[40];
   int offset;
@@ -9,3 +12,4 @@ struct timeZoneData {
   struct timeZoneData * next;
 };
 
+#endif

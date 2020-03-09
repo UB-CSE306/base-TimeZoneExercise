@@ -63,13 +63,3 @@ void readData(char * filename) {
   fclose(inputFile);
 }
 
-
-int main() {
-  readData("timezone-2020.data");
-  printData();
-  printEntry(get("Buffalo"));
-  printEntry(get("Uppsala"));
-  struct timeZoneData * p = get("Santiago");
-  printf("DST end date for %s is %d\n",p->loc, p->DST_end_date);
-  printEntry(get("Montreal"));
-}
