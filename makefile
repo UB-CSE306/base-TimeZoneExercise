@@ -5,16 +5,17 @@ EXECUTABLE = timeTests
 OS := $(shell uname -s)
 
 ifeq ($(OS), Darwin) 
-  CUNIT_PATH_PREFIX = /usr/local/Cellar/cunit/2.1-3/
-  CUNIT_DIRECTORY = cunit
+  INCLUDE_PATH := /opt/homebrew/Cellar/criterion/2.4.1_1/include
+  LIB_PATH := /opt/homebrew/Cellar/criterion/2.4.1_1/lib
+  CC = gcc-12
 endif
 ifeq ($(OS), Linux) 
-  CUNIT_PATH_PREFIX = /util/CUnit/
-  CUNIT_DIRECTORY = CUnit/
+  INCLUDE_PATH := /util/criterion/include
+  LIB_PATH := /util/criterion/lib/x86_64-linux-gnu
+  CC = gcc
 endif
 
-CC = gcc
-CFLAGS = -g -Wall -O0 -fprofile-arcs -ftest-coverage 
+CFLAGS = -g -Wall -O0 -fprofile-arcs -ftest-coverage -std=c11
 
 time.o: time.c time.h 
 	$(CC) $(CFLAGS) -c time.c
@@ -23,7 +24,7 @@ reader.o: reader.c reader.h
 	$(CC) $(CFLAGS) -c reader.c
 
 tests: $(OBJECTS) timeTests.c
-	$(CC) $(CFLAGS) -L $(CUNIT_PATH_PREFIX)lib  -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) $(OBJECTS) timeTests.c -o $(EXECUTABLE) -lcunit -lgcov 
+	$(CC) $(CFLAGS) -L $(CUNIT_PATH_PREFIX)lib  -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) $(OBJECTS) timeTests.c -o $(EXECUTABLE) -lcriterion -lgcov 
 
 .PHONY: clean
 clean:
